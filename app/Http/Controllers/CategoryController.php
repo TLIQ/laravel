@@ -121,6 +121,10 @@ class CategoryController extends Controller
         return view('category.index', ['category' => $this->category]);
     }
 
+    public function create()
+    {
+
+    }
     public function find(int $category)
     {
         return view('category.find', ['category' => $category,'news' => $this->news]);

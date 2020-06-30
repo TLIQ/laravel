@@ -13,17 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcomePage');
-//    dd(app());
-//    $a = 294109;
-//    dd($a);
-});
+//Route::get('/', function () {
+//    return view('welcomePage');
+////    dd(app());
+////    $a = 294109;
+////    dd($a);
+//});
 
 Route::get('/admin', 'Admin\IndexController@index')->name('admin');
 
+Route::get('/', 'NewsController@index')->name('news');
+
 Route::group(['prefix' => 'news'], function (){
-    Route::get('/', 'NewsController@index')->name('news');
+//    Route::get('/', 'NewsController@index')->name('news');
     Route::get('/create', 'NewsController@create')->name('news.create');
     Route::post('/store', 'NewsController@store')->name('news.store');
     Route::get('/{id}/edit', 'NewsController@edit')
@@ -37,3 +39,11 @@ Route::group(['prefix' => 'category'], function (){
     Route::get('/{category}/find', 'CategoryController@find')->name('category.find');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

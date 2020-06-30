@@ -6,6 +6,28 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    protected $category = [
+        [
+            'id' => 1,
+            'name' => 'Категория 1'
+        ],
+        [
+            'id' => 2,
+            'name' => 'Категория 2'
+        ],
+        [
+            'id' => 3,
+            'name' => 'Категория 3'
+        ],
+        [
+            'id' => 4,
+            'name' => 'Категория 4'
+        ],
+        [
+            'id' => 5,
+            'name' => 'Категория 5'
+        ]
+    ];
     protected $news = [
         [
             'id' => 1,
@@ -95,8 +117,9 @@ class NewsController extends Controller
     public function index()
     {
         $id = mt_rand(1, 100);
-        return view('news.index', ['id' => $id, 'news' => $this->news]);
+        return view('news.index', ['id' => $id, 'news' => $this->news, 'category' => $this->category]);
     }
+
 
     public function create()
     {
