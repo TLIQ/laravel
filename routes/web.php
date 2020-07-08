@@ -13,31 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcomePage');
-////    dd(app());
-////    $a = 294109;
-////    dd($a);
-//});
+
 
 Route::get('/admin', 'Admin\IndexController@index')->name('admin');
 
 Route::get('/', 'NewsController@index')->name('news');
 
 Route::group(['prefix' => 'news'], function (){
-//    Route::get('/', 'NewsController@index')->name('news');
     Route::get('/create', 'NewsController@create')->name('news.create');
     Route::post('/store', 'NewsController@store')->name('news.store');
     Route::get('/{id}/edit', 'NewsController@edit')
         ->where('id', '\d+')->name('news.edit');
-    Route::get('/{slug}/show', 'NewsController@show')
-        ->where('slug', '\w+')->name('news.show');
+    Route::put('/{id}/update', 'NewsController@update')->name('news.update');
+    Route::get('/review', 'NewsController@review')->name('news.review');
+    Route::post('/send', 'NewsController@send')->name('news.send');
+    Route::get('/unloading', 'NewsController@unloading')->name('news.unloading');
+    Route::post('/unloadingSend', 'NewsController@unloadingSend')->name('news.unloadingSend');
 });
 
 Route::group(['prefix' => 'category'], function (){
     Route::get('/', 'CategoryController@index')->name('category');
     Route::get('/{category}/find', 'CategoryController@find')->name('category.find');
 });
+
+
+
 
 
 Auth::routes();
