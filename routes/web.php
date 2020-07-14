@@ -33,7 +33,7 @@ Route::group(['prefix' => 'news'], function (){
 
 Route::group(['prefix' => 'category'], function (){
     Route::get('/', 'CategoryController@index')->name('category');
-    Route::get('/{category}/find', 'CategoryController@find')->name('category.find');
+    Route::get('/{id}/find', 'CategoryController@find')->name('category.find');
 });
 
 

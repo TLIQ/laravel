@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -118,15 +120,24 @@ class CategoryController extends Controller
     ];
     public function index()
     {
-        return view('category.index', ['category' => $this->category]);
+        $categories = (new Category())->getCategories();
+        return view('category.index', ['category' => $categories]);
+//        return view('category.index', ['category' => $this->category]);
     }
 
     public function create()
     {
 
     }
-    public function find(int $category)
+    public function find(int $id)
     {
-        return view('category.find', ['category' => $category,'news' => $this->news]);
+        $news = (new News())->getAllNews();
+        $category = (new Category())->getFindCategory($id);
+        if(!$category) {
+            return abort(404);
+        }
+
+        return view('category.find', ['id' => $id,'category' => $category, 'news' => $news]);
+//        return view('category.find', ['category' => $id,'news' => $this->news]);
     }
 }

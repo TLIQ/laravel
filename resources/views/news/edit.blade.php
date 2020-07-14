@@ -14,7 +14,7 @@
                     <input name="title" id="title" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" type="text" placeholder="Ваше название" value="{{ $news->title }}">
                 </div>
                 <div class="form-group">
-                    <p>Категория новости: {{ $news->category }}</p>
+{{--                    <p>Категория новости: {{ $news->category }}</p>--}}
                 </div>
                 <div class="form-group">
                     <label for="text">Текст новости</label>
