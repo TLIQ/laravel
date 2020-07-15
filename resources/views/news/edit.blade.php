@@ -21,6 +21,13 @@
                     <textarea name="text" class="form-control" aria-label="With textarea" id="full_reference" cols="30" rows="10" placeholder="Текст новости">{{ $news->text  }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-outline-success">Редактировать</button>
+{{--                <button  class="btn btn-outline-warning">Удалить</button>--}}
+            </form>
+
+            <form method="post" action="{{ route('news.delete', ['news' => $news]) }}">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-outline-warning">Удалить</button>
             </form>
         </div>
 

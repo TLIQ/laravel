@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,18 +13,19 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
+
     public function index()
     {
-        return view('home');
+        $news = News::orderBy('updated_at', 'desc')->paginate(5);
+
+//        $categories =(new Category())->getCategories();
+
+        return view('news.index', ['news' => $news, 'categories' => $this->getCategories()]);
     }
 }

@@ -2,71 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Models\Category;
 use App\Http\Requests\CreateNewsRequest;
-use App\News;
+use App\Models\News;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-
-    public function index()
-    {
-        $news = (new News())->getAllNews();
-        $categories =(new Category())->getCategories();
-//        dd($news);
-//        return view('news.index', ['news' => $this->news, 'category' => $this->category]);
-        return view('news.index', ['news' => $news, 'categories' => $categories]);
-    }
-
-
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
-        return view('news.create');
+        return view('news.create', ['categories' => $this->getCategories()]);
     }
 
-    public function edit(int $id)
+    /**
+     * @param News $news
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(News $news)
     {
-        $news = (new News())->getFindNews($id);
-        if(!$news) {
+//        return view('news.edit', ['id' => $id, 'news' => $this->news]);
+        return view('news.edit', ['news' => $news, 'categories' => $this->getCategories()]);
+    }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
+     */
+    public function update(Request $request, int $id)
+    {
+        $news = News::find($id);
+        if (!$news){
             return abort(404);
         }
 
-//        return view('news.edit', ['id' => $id, 'news' => $this->news]);
-        return view('news.edit', ['id' => $id, 'news' => $news]);
+        $news->title =$request->input('title');
+        $news->text = $request->input('text');
+
+        if ($news->save()) {
+            return redirect('/');
+        }
+
+        return back();
     }
 
-    public function update(Request $request, int $id)
-    {
-
-    }
+    /**
+     * @param CreateNewsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateNewsRequest $request)
     {
-//        dd($request->all());
-//        dd($request->validated());
-        $title = $request->input('title');
-        $text = $request->input('text');
-        $str = 'title:'. $title . '- text:' . $text;
-//        dd($text);
-        file_put_contents(storage_path('app/public/db.txt'), $str, FILE_APPEND);
-        return redirect()->route('news');
+        $news = News::create($request->validated());
+        if ($news){
+            return redirect()->route('news');
+        }
+        return back();
     }
 
-    public function review() {
-        return view('news.review');
-    }
 
-    public function send(Request $request) {
-        $name = $request->input('name');
-        $text = $request->input('text');
-        $str = 'name:'. $name . '- text:' . $text;
-        file_put_contents(storage_path('app/public/reviews.txt'), $str, FILE_APPEND);
-        return redirect()->route('news');
-    }
 
     public function unloading() {
-        return view('news.unloading');
+        return view('news.unloading', ['categories' => $this->getCategories()]);
     }
 
     public function unloadingSend(Request $request) {
@@ -77,5 +78,11 @@ class NewsController extends Controller
         $str = 'name:'. $name . '-phone:'. $phone . '-email:'. $email . '-info:' . $info;
         file_put_contents(storage_path('app/public/unloading.txt'), $str, FILE_APPEND);
         return redirect()->route('news');
+    }
+
+    public function deleteNews(News $news)
+    {
+        $news->delete();
+        return redirect('/');
     }
 }
