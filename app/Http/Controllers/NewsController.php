@@ -11,60 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('news.create', ['categories' => $this->getCategories()]);
-    }
-
-    /**
-     * @param News $news
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(News $news)
-    {
-//        return view('news.edit', ['id' => $id, 'news' => $this->news]);
-        return view('news.edit', ['news' => $news, 'categories' => $this->getCategories()]);
-    }
-
-    /**
-     * @param Request $request
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
-     */
-    public function update(Request $request, int $id)
-    {
-        $news = News::find($id);
-        if (!$news){
-            return abort(404);
-        }
-
-        $news->title =$request->input('title');
-        $news->text = $request->input('text');
-
-        if ($news->save()) {
-            return redirect('/');
-        }
-
-        return back();
-    }
-
-    /**
-     * @param CreateNewsRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(CreateNewsRequest $request)
-    {
-        $news = News::create($request->validated());
-        if ($news){
-            return redirect()->route('news');
-        }
-        return back();
-    }
-
-
 
     public function unloading() {
         return view('news.unloading', ['categories' => $this->getCategories()]);
@@ -80,9 +26,5 @@ class NewsController extends Controller
         return redirect()->route('news');
     }
 
-    public function deleteNews(News $news)
-    {
-        $news->delete();
-        return redirect('/');
-    }
+
 }

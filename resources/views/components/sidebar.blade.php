@@ -1,11 +1,11 @@
 <aside class="col-md-4 blog-sidebar">
     <div class="p-3 mb-3 bg-light rounded">
         <h4 class="font-italic">Оставить отзыв о проекте</h4>
-        <p class="mb-0"><a class="btn btn-outline-success" href="{{ route('news.review') }}">Нажмите, чтобы оставить отзыв.</a></p>
+        <p class="mb-0"><a class="btn btn-outline-success" href="{{ route('review.create') }}">Нажмите, чтобы оставить отзыв.</a></p>
     </div>
 
     <div class="p-3">
-        <h4 class="font-italic">Archives</h4>
+        <h4 class="font-italic">Отзывы</h4>
         <ol class="list-unstyled mb-0">
             <li><a href="#">March 2014</a></li>
             <li><a href="#">February 2014</a></li>

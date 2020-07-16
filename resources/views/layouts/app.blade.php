@@ -29,7 +29,7 @@
                 <a class="btn btn-outline-danger" href="{{ route('news.unloading') }}">Получить выгрузку</a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#">Новости</a>
+                <a class="blog-header-logo text-dark" href="{{ route('news') }}">Новости</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="text-muted" href="#">
