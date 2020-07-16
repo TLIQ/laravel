@@ -82,10 +82,10 @@ class CategoryController extends Controller
 //        $category->description = $request->input('description');
         $category->fill($request->validated());
 
-        $message = $category->save() ? 'Success!' : 'Failed';
+         $category->save();
 
-        return view('categories.index', [
-            'message' => $message
+        return view('category.allCat', [
+            'categories' => $this->getCategories()
         ]);
     }
 
