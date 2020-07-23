@@ -26,7 +26,7 @@
 
             </div><!-- /.blog-post -->
         @endforeach
-        <a class="btn btn-success mb-3" href="{{ route('categories.create') }}">Добавить категорию</a>
+{{--        <a class="btn btn-success mb-3" href="{{ route('categories.create') }}">Добавить категорию</a>--}}
         <nav class="blog-pagination">
             <a class="btn btn-outline-primary" href="#">Older</a>
             <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
