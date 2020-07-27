@@ -24,13 +24,13 @@
                 @if(!is_null($n->updated_at)) {{ $n->updated_at->format('d-m-Y H:m') }}
                     @else {{ $n->created_at->format('d-m-Y H:m') }}
                 @endif</p>
-                    <a class="btn btn-secondary mb-2" href="{{ route('news.edit', ['news' => $n]) }}"> Изменить</a>
+{{--                    <a class="btn btn-secondary mb-2" href="{{ route('news.edit', ['news' => $n]) }}"> Изменить</a>--}}
 
-                    <form action="{{ route('news.destroy', $n) }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-secondary mb-2">Удалить</button>
-                    </form>
+{{--                    <form action="{{ route('news.destroy', $n) }}" method="post">--}}
+{{--                        @method('DELETE')--}}
+{{--                        @csrf--}}
+{{--                        <button type="submit" class="btn btn-secondary mb-2">Удалить</button>--}}
+{{--                    </form>--}}
             @foreach($categories as $c)
                 @if ($n->cat_id === $c->id)
                     <h3>Категория новости: {!! $c->name !!} </h3>
@@ -44,8 +44,6 @@
 
         <nav class="blog-pagination">
             {!! $news->links() !!}
-{{--            <a class="btn btn-outline-primary" href="#">Older</a>--}}
-{{--            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>--}}
         </nav>
 
     </div><!-- /.blog-main -->

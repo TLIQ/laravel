@@ -1,6 +1,7 @@
  <?php
 
  use App\Http\Controllers\Admin\CategoryController;
+ use App\Http\Controllers\ParserController;
  use Illuminate\Support\Facades\Auth;
  use Illuminate\Support\Facades\Route;
 
@@ -50,8 +51,12 @@ Route::group(['middleware' => 'auth'], function (){
 
 
 
+Route::get('/parse/news', 'ParserController@index')->name('parser');
 
-
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/vk/auth', 'SocialAuthController@vkAuth')->name('vk.auth');
+    Route::get('/vk/auth/callback', 'SocialAuthController@vkAuthCallback')->name('vk.callback');
+});
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

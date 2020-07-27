@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="col-md-8 blog-main">
-        <h1>Список пользователей</h1>
+        <h1>Список пользователей </h1>
         @forelse($users as $user)
             <div class="blog-post">
                 <h3 class="blog-post-title " >Имя пользователя: {{ $user->name }}</h3>
@@ -29,8 +29,12 @@
                 </form>
             </div><!-- /.blog-post -->
         @empty
-            <p>Список пользователей пуст</p>
+            <p>Список пользователей пустой</p>
         @endforelse
+        <nav class="blog-pagination">
+            {!! $users->links() !!}
+        </nav>
     </div>
+
 @stop
 

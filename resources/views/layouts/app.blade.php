@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 
 <body>
@@ -41,6 +42,7 @@
                 @else
                     <a class="btn btn-sm btn-outline-secondary mr-2" href="{!! route('account') !!}">Личный кабинет</a>
                     <a class="btn btn-sm btn-outline-secondary mr-2" href="{!! route('admin') !!}">Администрирование</a>
+                    <a class="btn btn-sm btn-outline-secondary mr-2" href="{!! route('parser') !!}">Парсить</a>
                     <a class="btn btn-sm btn-outline-secondary" href="{!! route('logout') !!}">Выход</a>
                 @endif
             </div>

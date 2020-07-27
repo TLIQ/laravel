@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewsEditedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewsRequest;
 use App\Http\Requests\EditNewsRequest;
@@ -17,7 +18,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $news = News::query()->orderBy('created_at', 'desc')->paginate(10);
+//        $news = News::all();
+        return view('news.admin', ['news' => $news]);
     }
 
     /**
@@ -81,7 +84,8 @@ class NewsController extends Controller
         $news->text = $request->input('text');
 
         if ($news->save()) {
-            return redirect('/');
+            event(new NewsEditedEvent($news));
+            return redirect()->route('news');
         }
 
         return back();

@@ -4,7 +4,7 @@
         @foreach($categories as $category)
             <a class="p-2 text-muted" href="{{ route('category.show', $category -> id) }}">{{ $category->name }}</a>
         @endforeach
-            <a class="btn btn-outline-secondary text-muted" href="{{ route('categories.index') }}">Показать все</a>
+
     </nav>
 </div>
 

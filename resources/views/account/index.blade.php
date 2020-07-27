@@ -7,5 +7,6 @@
         <h1>Личный кабинет</h1>
         <p>Имя пользователя: {{ Auth::user()->name }}</p>
         <p>E-mail: {{ Auth::user()->email }}</p>
+        <p>Полследний вход: {{ $lastLogin }}</p>
     </div>
 @stop
