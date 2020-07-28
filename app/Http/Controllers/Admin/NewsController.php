@@ -19,6 +19,8 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::query()->orderBy('created_at', 'desc')->paginate(10);
+
+
 //        $news = News::all();
         return view('news.admin', ['news' => $news]);
     }
@@ -43,7 +45,7 @@ class NewsController extends Controller
     {
         $news = News::create($request->validated());
         if ($news){
-            return redirect()->route('/');
+            return redirect()->route('news.index');
         }
         return back();
     }
@@ -85,7 +87,7 @@ class NewsController extends Controller
 
         if ($news->save()) {
             event(new NewsEditedEvent($news));
-            return redirect()->route('news');
+            return redirect()->route('news.index');
         }
 
         return back();

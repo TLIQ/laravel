@@ -25,9 +25,15 @@
                     @endforeach
                 </div>
             @endif
-            <textarea name="text" class="form-control" aria-label="With textarea" id="full_reference" cols="30" rows="10" placeholder="Ваш текст"></textarea>
+            <textarea name="text" class="form-control" aria-label="With textarea" id="full_reference" cols="30" rows="10" placeholder="Ваш текст">{!! old('text') !!}</textarea>
         </div>
         <button type="submit" class="btn btn-outline-success">Добавить</button>
     </form>
 </div>
 @stop
+@push('js')
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('full_reference');
+    </script>
+@endpush

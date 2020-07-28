@@ -15,7 +15,7 @@
                     <p class="blog-post-meta mr-4">Статус: {{ $n->status }}</p>
                     <p class="blog-post-meta mr-4">Создана: {{ $n->created_at }}</p>
                     <p class="blog-post-meta mr-4">Изменена: {{ $n->updated_at }}</p>
-                    <p class="blog-post-meta mr-4">Текст новости: {{ $n->text }}</p>
+                    <p class="blog-post-meta mr-4">Текст новости: {!! $n->text !!} </p>
                 </div>
 
                 <a class="btn btn-secondary mb-2" href="{{ route('news.edit', ['news' => $n]) }}"> Изменить</a>
